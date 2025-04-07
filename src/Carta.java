@@ -16,6 +16,10 @@ public class Carta {
         indice = r.nextInt(52) + 1;
     }
 
+    public int getIndice() {
+        return indice;
+    }
+
     public void mostrar(JPanel pnl, int x, int y) {
 
         String nombreArchivo = "/imagenes/CARTA" + indice + ".jpg";
@@ -29,7 +33,7 @@ public class Carta {
         lblCarta.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(null, getPinta());
+                JOptionPane.showMessageDialog(null, getNombre() + " de " + getPinta());
             }
         });
     }
@@ -45,5 +49,13 @@ public class Carta {
             return Pinta.DIAMANTE;
         }
     }
+    public NombreCarta getNombre() {
+        int residuo = indice % 13;
+        if (residuo == 0) {
+            residuo = 13;
+        }
+        return NombreCarta.values()[residuo - 1];
+    }
 
+    
 }

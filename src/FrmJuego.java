@@ -1,10 +1,10 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
@@ -72,7 +72,54 @@ public class FrmJuego extends JFrame {
     }
 
     private void btnVerificarClick(ActionEvent evt) {
-
+        //switch (tpJugadores.getSelectedIndex()) {
+        //    case 0:
+        //        JOptionPane.showMessageDialog(null, jugador1.mostrarGrupos() + "\n" + jugador1.mostrarEscalera()+"\n" + jugador1.getPuntaje());
+        //        break;
+        //    case 1:
+        //        JOptionPane.showMessageDialog(null, jugador2.mostrarGrupos() + "\n" + jugador2.mostrarEscalera()+"\n" + jugador2.getPuntaje());
+        //        break;
+        //}
+        String mensaje = "";
+        String resultado = "";
+        switch (tpJugadores.getSelectedIndex()) {
+            case 0:
+                mensaje = jugador1.mostrarGrupos() + "\n" + jugador1.mostrarEscalera() + "\n" + jugador1.getPuntaje();
+                int puntaje1 = jugador1.getPuntaje() != null ?  Integer.parseInt(jugador1.getPuntaje().replaceAll("\\D+", "")) : 0;
+                int puntaje2 = jugador2.getPuntaje() != null ?  Integer.parseInt(jugador2.getPuntaje().replaceAll("\\D+", "")) : 0;
+                if (jugador1.getPuntaje() != null && jugador2.getPuntaje() != null) {
+                    if (jugador1.getPuntaje().equals(jugador2.getPuntaje())) {
+                        resultado = "Es un empate.";
+                    } else if (puntaje1 > puntaje2) {
+                        resultado = "Jugador 2 gana.";
+                    } else {
+                        resultado = "Jugador 1 gana.";
+                    }
+                } else {
+                    resultado = "Los puntajes no están completamente definidos.";
+                }
+                JOptionPane.showMessageDialog(null, mensaje + "\n" + resultado);
+                break;
+            case 1:
+                mensaje = jugador2.mostrarGrupos() + "\n" + jugador2.mostrarEscalera() + "\n" + jugador2.getPuntaje();
+                puntaje1 = jugador1.getPuntaje() != null ?  Integer.parseInt(jugador1.getPuntaje().replaceAll("\\D+", "")) : 0;
+                puntaje2 = jugador2.getPuntaje() != null ?  Integer.parseInt(jugador2.getPuntaje().replaceAll("\\D+", "")) : 0;
+                
+                if (jugador1.getPuntaje() != null && jugador2.getPuntaje() != null) {
+                    if (jugador1.getPuntaje().equals(jugador2.getPuntaje())) {
+                        resultado = "Es un empate.";
+                    } else if (puntaje1 > puntaje2) {
+                        resultado = "Jugador 2 gana.";
+                    } else {
+                        resultado = "Jugador 1 gana.";
+                    }
+                } else {
+                    resultado = "Los puntajes no están completamente definidos.";
+                }
+                JOptionPane.showMessageDialog(null, mensaje + "\n" + resultado);
+                break;
+        }
+      
+    
     }
-
-}
+}       
